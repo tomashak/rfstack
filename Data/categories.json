@@ -1,0 +1,30 @@
+{
+  "menu_items": [
+    {
+      "name": "WOMEN",
+      "submenu_items": [
+        {
+          "name": "TOPS",
+          "categories": [
+            "T-shirts",
+            "Blouses"
+          ]
+        },
+        {
+          "name": "DRESSES",
+          "categories": [
+            "Casual Dresses",
+            "Evening Dresses",
+            "Summer Dresses"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DRESSES"
+    },
+    {
+      "name": "T-SHIRTS"
+    }
+  ]
+}
