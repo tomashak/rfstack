@@ -22,7 +22,7 @@ Example API 1
     ${endpoint_url}=    Replace Variables    ${endpoint_POSTS}     #?bank=${bankCode}&sort=${sort}&order=${order}&page=${page}&size=${size}
     ${resp}=  get request  TestAPI  ${endpoint_url}  #headers=${headers_dict}
     log  ${resp.json()}
-    Should Be Equal As Strings  ${resp.status_code}  200  Response: status:${resp.status_code} (expected: 200) : ${resp.json()}
+    Should Be Equal As Strings  ${resp.status_code}  201  Response: status:${resp.status_code} (expected: 200) : response:${resp.json()}
 
 
 Example API 2

@@ -20,7 +20,7 @@ Open Homepage and Login
 
 *** Test Cases ***
 TC_01 - SEARCH FOR PRODUCT  # TODO prepsat nazvy testu - proc jsou velkymi pismeny???
-    [Tags]  search
+    [Tags]  mall  search
     Search for product by search bar    Beats
     Control list of items   Beats
 

@@ -9,7 +9,7 @@ Library  SeleniumLibrary
 Choose category   # todo: opravdu se to tyka jen product list page? nema to byt nahodou v common?
     [Arguments]  ${categoryName}
     click element   css=.head-category-menu
-    wait until element is visible   //*[@id='main-menu']//*[@class='menu-item--title' and contains(text(), '${categoryName}')]
+    wait until element is visible   //*[@id='main-menu']//*[@class='desktop-menu__item' and contains(text(), '${categoryName}')]
     mouse over  //*[@id='main-menu']//*[@class='menu-item--title' and contains(text(), '${categoryName}')]
 
 Choose subcategory

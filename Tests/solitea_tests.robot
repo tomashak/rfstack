@@ -30,8 +30,8 @@ ${saveInvoiceBtn}=  //button[@id="csw-card-save"]
 
 *** Keywords ***
 Open Homepage
-    #open browser    ${URL}  ${BROWSER}
-    open browser  ${URL}  remote_url=https://tomashak4:6nd64NMLsr3A7aHH2RAf@hub-cloud.browserstack.com/wd/hub
+    open browser    ${URL}  ${BROWSER}
+    #open browser  ${URL}  remote_url=https://tomashak4:6nd64NMLsr3A7aHH2RAf@hub-cloud.browserstack.com/wd/hub
     ...                   desired_capabilities=browser:edge,browser_version:18.0,os:Windows,os_version:10
     maximize browser window
 
@@ -45,7 +45,7 @@ Login to iDoklad
     input text  ${loginPswInput}     ${password}
     #TODO use lang param
     click element   ${loginButton}
-    wait until page contains element  ${newInvoiceBtn}
+    wait until page contains element  ${newInvoiceBtn}  error="Nebylo nalezeno tlačítko pro Novou fakturu na hlavní stárnce, xpath:"${newInvoiceBtn}
 
 
 Go to "Nova faktura"
@@ -58,7 +58,7 @@ Go to "Nova faktura"
 
 *** Test Cases ***
 TC_01 - HappyPath
-    [Tags]  profile
+    [Tags]  solitea  profile
     [Documentation]  Example of RF test
     Login to iDoklad  ${MAIL}  ${PSW}
     Go to "Nova faktura"
