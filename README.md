@@ -3,6 +3,8 @@
 
 Vzorový projekt slouží k demonstraci možností logování RF testů skrze listener do ElasticSearche a pak následně do Kibany
 
+[![Status](https://img.shields.io/badge/status-active-success.svg)]()
+
 ### Instalace
 
 Pro spouštění automatizovaných testů je třeba mít na PC nainstalován Python 3.7 a 
