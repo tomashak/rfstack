@@ -18,16 +18,17 @@ ${endpoint_POSTS}=  /posts
 *** Test Cases ***
 Example API 1
     [Documentation]  Get all posts from API
-    [Tags]  api  posts
+    [Tags]  rfstack  api  posts
     ${endpoint_url}=    Replace Variables    ${endpoint_POSTS}     #?bank=${bankCode}&sort=${sort}&order=${order}&page=${page}&size=${size}
     ${resp}=  get request  TestAPI  ${endpoint_url}  #headers=${headers_dict}
     log  ${resp.json()}
     Should Be Equal As Strings  ${resp.status_code}  201  Response: status:${resp.status_code} (expected: 200) : response:${resp.json()}
+    
 
 
 Example API 2
     [Documentation]  Create new post
-    [Tags]  api  posts
+    [Tags]  rfstack  api  posts
     ${endpoint_url}=    Replace Variables    ${endpoint_POSTS}
     ${headers_dict}=  create dictionary  Content-Type=application/json; charset=UTF-8
     ${string_json}=  catenate
@@ -47,6 +48,19 @@ Example API 2
     should be equal as strings  ${resp_json['userId']}  1989
 
 
+Random time test
+    [Documentation]  Pokusny test s promenlivym casovanim
+    [Tags]  rfstack
+    ${random int}=  Evaluate  random.randint(1, 12)   modules=random
+    Sleep  ${random int}
+
+
+Random time and result test
+    [Documentation]  Pokusny test s promenlivym casovanim a vysledkem
+    [Tags]  rfstack
+    ${random int}=  Evaluate  random.randint(0, 2)   modules=random
+    Sleep  ${random int}
+    should be true   ${random int} == 1   Random status, ${random int}
 #TODO - zadat na kurzu
 #negativní scénáře, stejnou práci s endpointem comments, připravit vlastní funkce na jednotliva volani
 

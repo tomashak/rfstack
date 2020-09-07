@@ -19,14 +19,14 @@ Open Homepage and Login
     Open Homepage
 
 *** Test Cases ***
-TC_01 - SEARCH FOR PRODUCT  # TODO prepsat nazvy testu - proc jsou velkymi pismeny???
-    [Tags]  mall  search
+TC_01 - SEARCH FOR PRODUCT
+    [Tags]  rfstack  mall  search
     Search for product by search bar    Beats
     Control list of items   Beats
 
 
 TC_02 - PRODUCT'S DETAIL
-    [Tags]  detail
+    [Tags]  rfstack  detail
     Choose category  TV, audio a foto
     Choose subcategory  Televize
     Check every item on the list has mandatory fields

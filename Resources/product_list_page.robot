@@ -15,7 +15,7 @@ Choose category   # todo: opravdu se to tyka jen product list page? nema to byt 
 Choose subcategory
     [Arguments]  ${subcategoryName}
     wait until element is visible   //div[@class='new-menu-container']//a[contains(text(), '${subcategoryName}')]
-    click element  //div[@class='new-menu-container']//a[contains(text(), '${subcategoryName}')]
+    click element  //div[@class='new-menu-container']//a[contains(text(), '${subcategoryName}')]    
 
 Check every item on the list has mandatory fields
     wait until element is visible  //main[@id='content']//article[starts-with(@id,"list")]
@@ -23,8 +23,7 @@ Check every item on the list has mandatory fields
     ${name}   page should contain element     //main[@id='content']//article[starts-with(@id,"list")]//h3[contains(@class,"lst-product-item-title") and not(text()="")]   limit=${noOfElements}
     ${price}  page should contain element  //main[@id='content']//article[starts-with(@id,"list")]//span[@class="lst-product-item-price-value" and contains(text(),"Kč")]  limit=${noOfElements}
     ${availability}  page should contain element  //main[@id='content']//article[starts-with(@id,"list")]//p[contains(@class,"lst-product-item-availability") and not(text()="")]  limit=${noOfElements}
-
-
+    
 
 
 #Choose item

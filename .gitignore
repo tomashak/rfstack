@@ -8,3 +8,4 @@ report.html
 # python files
 *.pyc
 listen.txt
+output

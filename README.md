@@ -33,6 +33,11 @@ V případě **True** se prohlížeč vykresluje jen v paměti a není vidět na
 
 Detailní popis možný parametrů pro spuštění naleznete zde: http://robotframework.org/robotframework/2.9b2/RobotFrameworkUserGuide.html#all-command-line-options 
 
+Pokud chceme využít i listenery pro odesílání do Elastic, Allure a Report portal současně, použijeme příkaz:
+```
+robot -i rfstack --listener Listener/PythonListener.py --listener allure_robotframework:Results/allure --listener robotframework_reportportal.listener --variable RP_UUID:"65c278c5-dec2-4e92-9865-5adfee24e26a" --variable RP_ENDPOINT:"http://portal.tesena.com" --variable RP_LAUNCH:"tomas.hak_TEST_EXAMPLE" --variable RP_PROJECT:"tomas_hak_personal"  Tests
+```
+
 ## Tests data
 
 Očekává se běžící elasticsearch na url: localhost:9200   , pokud se parametrem nedefinuje jinak.

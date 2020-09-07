@@ -58,7 +58,7 @@ Go to "Nova faktura"
 
 *** Test Cases ***
 TC_01 - HappyPath
-    [Tags]  solitea  profile
+    [Tags]  rfstack  solitea  profile
     [Documentation]  Example of RF test
     Login to iDoklad  ${MAIL}  ${PSW}
     Go to "Nova faktura"
