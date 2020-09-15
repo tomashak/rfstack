@@ -3,7 +3,7 @@
 
 Vzorový projekt slouží k demonstraci možností logování RF testů skrze listener do ElasticSearche a pak následně do Kibany
 
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
+![Report-CI](https://github.com/tomashak/rfstack/workflows/Report-CI/badge.svg)
 
 ### Instalace
 
