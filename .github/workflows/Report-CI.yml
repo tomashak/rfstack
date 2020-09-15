@@ -1,0 +1,64 @@
+name: Report-CI
+
+# Běh každou hodinu
+on:
+  schedule:
+    - cron: '0 */1 * * *'
+ # push:
+  #  branches: 
+    #  - master
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  robotFramework:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6]
+    name: Data to report portal
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install ChromeDriver
+        run: |
+          CHROME_VERSION=$(google-chrome --version | cut -f 3 -d ' ' | cut -d '.' -f 1) \
+            && CHROMEDRIVER_RELEASE=$(curl --location --fail --retry 3 http://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}) \
+            && curl --silent --show-error --location --fail --retry 3 --output /tmp/chromedriver_linux64.zip "http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_RELEASE/chromedriver_linux64.zip" \
+            && cd /tmp \
+            && unzip chromedriver_linux64.zip \
+            && rm -rf chromedriver_linux64.zip \
+            && sudo mv chromedriver /usr/local/bin/chromedriver \
+            && sudo chmod +x /usr/local/bin/chromedriver \
+            && chromedriver --version
+      - name: display
+        run: DISPLAY=:0
+      - name: Robot Framework dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install robotframework
+          pip install robotframework-seleniumlibrary
+          pip install robotframework-requests
+          pip install robotframework-reportportal
+      - name: Run test
+        uses: GabrielBB/xvfb-action@v1.0
+        with:
+          run: |
+           python3 -m robot --listener robotframework_reportportal.listener --variable RP_UUID:${{ secrets.UUID }} --variable RP_ENDPOINT:${{ secrets.ENDPOINT }} --variable RP_LAUNCH:${{ secrets.LAUNCH }} --variable RP_PROJECT:${{ secrets.PROJECT }} --variable BROWSER:Chrome test/RobotFrameWork/tc.robot
+  postmanDockerRun:
+    name: Postman test with report 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.2
+      - name: Postman
+        run: |
+          docker pull reportportal/newman      
+          docker run -t reportportal/newman run https://raw.githubusercontent.com/procesor2017/gitHubWorkShop/master/test/Postman/TestApi.json \
+          -r @reportportal/reportportal \
+          --reporter-@reportportal/reportportal-debug=true \
+          --reporter-@reportportal/reportportal-endpoint=http://portal.tesena.com/api/v1 \
+          --reporter-@reportportal/reportportal-token=${{ secrets.UUID }} \
+          --reporter-@reportportal/reportportal-launch=${{ secrets.LAUNCH }} \
+          --reporter-@reportportal/reportportal-project=${{ secrets.PROJECT }} \
+          -x
