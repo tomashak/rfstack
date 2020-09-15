@@ -36,26 +36,18 @@ jobs:
         run: DISPLAY=:0
       - name: Robot Framework dependencies
         run: |
+          ls -a
           python -m pip install --upgrade pip
-          pip install requirements.txt
+          pip install robotframework
+          pip install robotframework-seleniumlibrary
+          pip install robotframework-requests
+          pip install robotframework-reportportal
+          pip install allure-robotframework
+          pip install robotframework-reportportal
       - name: Run test
         uses: GabrielBB/xvfb-action@v1.0
         with:
           run: |
            python3 -m robot -i rfstack --listener Listener/PythonListener.py --listener allure_robotframework:Results/allure --listener robotframework_reportportal.listener --variable RP_UUID:"65c278c5-dec2-4e92-9865-5adfee24e26a" --variable RP_ENDPOINT:"http://portal.tesena.com" --variable RP_LAUNCH:"tomas.hak_TEST_EXAMPLE" --variable RP_PROJECT:"tomas_hak_personal"  Tests
-  postmanDockerRun:
-    name: Postman test with report 
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2.3.2
-      - name: Postman
-        run: |
-          docker pull reportportal/newman      
-          docker run -t reportportal/newman run https://raw.githubusercontent.com/procesor2017/gitHubWorkShop/master/test/Postman/TestApi.json \
-          -r @reportportal/reportportal \
-          --reporter-@reportportal/reportportal-debug=true \
-          --reporter-@reportportal/reportportal-endpoint=http://portal.tesena.com/api/v1 \
-          --reporter-@reportportal/reportportal-token=${{ secrets.UUID }} \
-          --reporter-@reportportal/reportportal-launch=${{ secrets.LAUNCH }} \
-          --reporter-@reportportal/reportportal-project=${{ secrets.PROJECT }} \
-          -x
+           ls
+  

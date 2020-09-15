@@ -3,6 +3,5 @@ robotframework-seleniumlibrary==3.3.1
 requests==2.22
 robotframework-requests==0.5
 selenium
-elasticsearch>=7.0.0,<8.0.0
 allure-robotframework
 robotframework-reportportal
