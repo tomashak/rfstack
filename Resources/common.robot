@@ -28,6 +28,7 @@ Open chrome in virtualmachine
    Call Method    ${options}    add_experimental_option  useAutomationExtension  ${False}
    run keyword if  '${enable_HEADLESS}' == 'True'  Call Method    ${options}    add_argument    headless
    run keyword if  '${enable_HEADLESS}' == 'True'  Call Method    ${options}    add_argument    disable-gpu
+   Call Method    ${options}    add_argument  disable-dev-shm-usage
    #Open Browser      ${START_URL}    ${BROWSER}  chrome_options=${options}
    Create WebDriver    ${BROWSER}   chrome_options=${options}
    Go To  ${START_URL}
