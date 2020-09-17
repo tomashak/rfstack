@@ -32,7 +32,7 @@ ${saveInvoiceBtn}=  //button[@id="csw-card-save"]
 Open Homepage
     Open chrome in virtualmachine   ${URL}
     #open browser  ${URL}  remote_url=https://tomashak4:6nd64NMLsr3A7aHH2RAf@hub-cloud.browserstack.com/wd/hub
-    ...                   desired_capabilities=browser:edge,browser_version:18.0,os:Windows,os_version:10
+    #...                   desired_capabilities=browser:edge,browser_version:18.0,os:Windows,os_version:10
     maximize browser window
 
 Login to iDoklad
