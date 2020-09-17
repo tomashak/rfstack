@@ -10,7 +10,7 @@ Resource  ../Resources/search_bar.robot
 
 # robot -d results tests/mall_tests.robot
 
-Suite Setup     Open Homepage
+Suite Setup     Open chrome in virtualmachine  ${URL}
 Test Setup      go to  ${URL}
 Suite Teardown  Close All Browsers
 

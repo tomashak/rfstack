@@ -18,7 +18,7 @@ Test Teardown  Close All Browsers
 ${URL}=         https://app.idoklad.cz/Account/Login
 ${MAIL}=        tomas.hak@tesena.com
 ${PSW}=         dxm.SjUnvEg94eb
-${BROWSER}=     chrome
+${BROWSER}=     Chrome
 
 #page objects
 ${loginMailInput}=  //input[@id="UserName"]
@@ -30,7 +30,7 @@ ${saveInvoiceBtn}=  //button[@id="csw-card-save"]
 
 *** Keywords ***
 Open Homepage
-    open browser    ${URL}  ${BROWSER}
+    Open chrome in virtualmachine   ${URL}
     #open browser  ${URL}  remote_url=https://tomashak4:6nd64NMLsr3A7aHH2RAf@hub-cloud.browserstack.com/wd/hub
     ...                   desired_capabilities=browser:edge,browser_version:18.0,os:Windows,os_version:10
     maximize browser window
