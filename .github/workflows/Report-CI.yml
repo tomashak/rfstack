@@ -3,7 +3,7 @@ name: Report-CI
 # Běh každou hodinu
 on:
   schedule:
-    - cron: '0 */1 * * *'
+    - cron: '0 */12 * * *'
  # push:
   #  branches: 
     #  - master
