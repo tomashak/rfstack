@@ -22,7 +22,7 @@ jobs:
         # create folder for test reports
       - name: Create folder for reports
         run: mkdir Results
-        name: Check directories
+      - name: Check directories
         run: ls -a
       # run Robot Framework tests inside Docker container
       - name: Run Robot Framework Tests
