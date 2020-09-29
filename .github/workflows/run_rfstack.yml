@@ -22,10 +22,27 @@ jobs:
         # create folder for test reports
       - name: Create folder for reports
         run: mkdir Results
+        name: Check directories
+        run: ls -a
+      # run Robot Framework tests inside Docker container
       - name: Run Robot Framework Tests
-        uses: joonvena/robotframework-docker-action@v0.1
-        env:
-          BROWSER: chrome
-          ROBOT_TESTS_DIR: ${{ github.workspace }}/Tests
-          ROBOT_REPORTS_DIR: ${{ github.workspace }}/Results
-          ROBOT_OPTIONS: "-i rfstack --loglevel DEBUG"
+        # container used here is ppodgorsek/robot-framework:latest
+        # see container documentation for usage: https://hub.docker.com/r/ppodgorsek/robot-framework/dockerfile
+        # it is required that GitHub repository contains folder "reports". Commit some file inside "reports" to create it
+        # place tests in folder tests or change docker run command accordingly
+        # configure -e ROBOT_OPTIONS according to yout tests, or remove it if no special configuration is needed
+        run: |
+            docker run \
+              -v ${PWD}/Results:/opt/robotframework/reports:Z \
+              -v ${PWD}/Tests:/opt/robotframework/tests:Z \
+              -e ROBOT_OPTIONS="-i rfstack --loglevel DEBUG" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+      # upload test reports as a zip file
+      - name: Upload reports
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: Results
+          # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
+          path: ${{ github.workspace }}/Results        
