@@ -34,7 +34,7 @@ jobs:
         run: |
             docker run \
               -v ${PWD}/Results:/opt/robotframework/reports:Z \
-              -v ${PWD}/Tests:/opt/robotframework/tests:Z \
+              -v ${PWD}:/opt/robotframework/tests:Z \
               -e ROBOT_OPTIONS="-i rfstack --loglevel DEBUG" \
               --user $(id -u):$(id -g) \
               ppodgorsek/robot-framework:latest
